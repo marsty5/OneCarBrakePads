@@ -14,24 +14,21 @@ Notice: When my line begins with '>', it's a terminal command
 > rails _4.1.12_ new my_car_parts -d postgresql
 
 3. Include gems bootstrap-sass, simple_form, devise
-Go to Gemfile and add the following lines:
-# Use boostrap CSS framework. Read more: https://rubygems.org/gems/bootstrap-sass/versions/3.3.5.1
-gem 'bootstrap-sass', '~> 3.3.5.1'
-# simple_form - Improved from generator. Read more: https://rubygems.org/gems/simple_form/versions/3.1.0
-gem 'simple_form', '~> 3.1.0'
-# Use devise for User authentication. Read more: https://rubygems.org/gems/devise/versions/3.5.2
-gem 'devise', '~> 3.5.2'
-Update bundle as follows:
+  Go to Gemfile and add the following lines:
+  gem 'bootstrap-sass', '~> 3.3.5.1'
+  gem 'simple_form', '~> 3.1.0'
+  gem 'devise', '~> 3.5.2'
+  Update bundle as follows:
 > bundle install
 
-* This gave me compatibilities issues, so I updated the version of sass-rails to the latest one
-gem 'sass-rails', '~> 5.0.3'
+  * This gave me compatibilities issues, so I updated the version of sass-rails to the latest one
+  gem 'sass-rails', '~> 5.0.3'
 
 > bundle install
 > Your bundle is complete!
 
 4. Set up postgress user
-I followed this: https://stackoverflow.com/questions/19953653/how-to-set-up-postgres-database-for-local-rails-project/20305467#20305467
+  I followed this: https://stackoverflow.com/questions/19953653/how-to-set-up-postgres-database-for-local-rails-project/20305467#20305467
 > sudo su postgres -c psql
 > create user marsty5 with password 'password'; # create user "marsty5" with password "password"
 > alter user marsty5 superuser;
