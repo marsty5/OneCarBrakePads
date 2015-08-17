@@ -120,24 +120,25 @@ This site also works: http://localhost:3000/welcome/index
   > rails destroy model <model_name>
 
 12. Create associations between models
+
   Association: A user can have many orders. One order belongs to one user.
-  In app/models/order.rb, make sure you have:
-  belongs_to :user
-  And in app/model/user.rb, make sure you have:
-  has_many :orders
+  - In app/models/order.rb, make sure you have:
+    belongs_to :user
+  - And in app/model/user.rb, make sure you have:
+    has_many :orders
 
   Association: A part of an order belongs to one order and to one part_type.
   An order has many order parts. A part type has many order parts.
 
-  In app/models/order_part.rb, make sure you have:
-  belongs_to :part_type
-  belongs_to :order
+  - In app/models/order_part.rb, make sure you have:
+    belongs_to :part_type
+    belongs_to :order
 
-  And in app/models/order.rb, make sure you have:
-  has_many :order_parts
+  - And in app/models/order.rb, make sure you have:
+    has_many :order_parts
 
-  And in app/models/part_type.rb, make sure you have:
-  has_many :order_parts
+  - And in app/models/part_type.rb, make sure you have:
+    has_many :order_parts
 
 13. Add two pictures in the app/assets/images for the car model and part type
 
