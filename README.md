@@ -5,6 +5,8 @@ A mini Ruby on Rails project following the instructions in the Assignment.pdf :)
 
 Step-by-Step to create this project
 -----------------------------------
+This is first a reminder/reference for myself to remember how I created this.
+And of course it's a guide for anyone interested.
 Notice: When my line begins with '>', it's a terminal command
 
 1. Install rails version 4.1.12
@@ -26,6 +28,10 @@ Notice: When my line begins with '>', it's a terminal command
 
  > bundle install
  >  Your bundle is complete!
+
+  Run the following commands to complete installation of gems:
+  > rails generate devise:install
+  > rails generate simple_form:install --bootstrap
 
 4. Set up postgress user
   I followed this: https://stackoverflow.com/questions/19953653/how-to-set-up-postgres-database-for-local-rails-project/20305467#20305467
@@ -79,7 +85,7 @@ This site also works: http://localhost:3000/welcome/index
 9. Create a resource car_model (not needed for this assignment)
  Go to config/routes.rb and add the following line
  resources :car_models
- 
+
  Run the following:
  > bin/rake routs
  The following is printed:
@@ -101,14 +107,46 @@ This site also works: http://localhost:3000/welcome/index
 
 11. Create models CarModel, PartType, Order, OrderPart
  > rails generate model CarModel name:string
- > rake db:migrate
  > rails generate model PartType name:string partno:integer manufacturer:string price:float
- > rake db:migrate
  > rails generate model Order user:references address:string total:float
- > rake db:migrate
- > rails generate model OrderType parttype:reference order:references price:float
+ > rails generate model OrderPart parttype:references order:references orderprice:float
  > rake db:migrate
 
-12. Add two pictures in the app/assets/images for the car model and part type
+  I forgot to add three fields for user, so here we add them:
+  > rails generate migration AddFieldsToUsers first_name:string last_name:string email:string
 
-13.
+  Useful command. Delete a model
+  > bundle exec rake db:rollback
+  > rails destroy model <model_name>
+
+12. Create associations between models
+  Association: A user can have many orders. One order belongs to one user.
+  In app/models/order.rb, make sure you have:
+  belongs_to :user
+  And in app/model/user.rb, make sure you have:
+  has_many :orders
+
+  Association: A part of an order belongs to one order and to one part_type.
+  An order has many order parts. A part type has many order parts.
+
+  In app/models/order_part.rb, make sure you have:
+  belongs_to :part_type
+  belongs_to :order
+
+  And in app/models/order.rb, make sure you have:
+  has_many :order_parts
+
+  And in app/models/part_type.rb, make sure you have:
+  has_many :order_parts
+
+13. Add two pictures in the app/assets/images for the car model and part type
+
+14. Create first form to select Car Model
+ = simple_form_for(@user, html: { class: 'form-horizontal' }) do |form|
+
+
+16. Validates presence of first_name, last_name, email for User
+  Add the following in the app/models/user.rb :
+  validates :first_name,  :presence => true
+  validates :last_name, :presence => true
+  validates :email, :presence => true
