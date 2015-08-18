@@ -114,6 +114,8 @@ This site also works: http://localhost:3000/welcome/index
 
   I forgot to add three fields for user, so here we add them:
   > rails generate migration AddFieldsToUsers first_name:string last_name:string email:string
+  > rake db:migrate
+  (More info on migrations: http://guides.rubyonrails.org/v3.2.9/migrations.html)
 
   Useful command. Delete a model
   > bundle exec rake db:rollback
@@ -142,9 +144,25 @@ This site also works: http://localhost:3000/welcome/index
 
 13. Add two pictures in the app/assets/images for the car model and part type
 
-14. Create first form to select Car Model
- = simple_form_for(@user, html: { class: 'form-horizontal' }) do |form|
+14. Create a controller for orders, users, part_types
+  > bin/rails generate controller order
+  > bin/rails generate controller user
+  > bin/rails generate controller part_type
 
+
+15. From now on IN PROGRESS - Edit app/config/routes.rb
+  - I put in comments what paths I should create
+  - Create first form to select Car Model
+  - Create second form to select Part Type
+  - Create third form to select Part
+  - Create jQuery functions for submit buttons per form
+  - Create redirection to devise authentication if not logged in
+  - Create the views: checkout, payment, complete payment, confirmation
+  - Send email
+
+Useful guide - use devise
+https://rubyonrailshelp.wordpress.com/2014/01/03/creating-user-and-admin-model-using-devise-rails/
+http://www.gotealeaf.com/blog/how-to-use-devise-in-rails-for-authentication
 
 16. Validates presence of first_name, last_name, email for User
   Add the following in the app/models/user.rb :

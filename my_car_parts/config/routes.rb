@@ -8,8 +8,26 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  resources :car_models
+  #get 'welcome/login' => 'welcome#login', as :login
+  # get 'welcome/signup' => 'welcome#signup', as :signup
+  #get 'find_car_parts' => 'car_part#search', as :find_parts_page
+  #get 'find_car_parts/:id/'
 
+  # resources :car_models do
+  #   resources :part_types do
+  #     resources :parts
+  #   end
+  # end
+
+  # as :checkout_page
+  # as :payment_page
+  # as :payment_complete_page
+  # as :order_confirmation_page
+
+  # as :user_login_page
+  # as :user_signup_page
+
+##############################################################################
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

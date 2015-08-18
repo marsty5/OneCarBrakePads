@@ -1,0 +1,3 @@
+class PartTypeController < ApplicationController
+  
+end
